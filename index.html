@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Notifikasi UwU</title>
+  <style>
+    body {
+      font-family: 'Comic Neue', cursive;
+      background: #ffe6f0;
+      color: #ff1493;
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    button {
+      padding: 14px 30px;
+      font-size: 20px;
+      background-color: #ff66b2;
+      border: none;
+      border-radius: 20px;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ff99cc;
+    }
+
+    button:hover {
+      background-color: #ff3399;
+    }
+  </style>
+</head>
+<body>
+  <h2>💖 Coba Notifikasi Lucuu Ayangg 💖</h2>
+  <button onclick="mulaiNotif()">Mulai Notifikasi Setiap 100ms</button>
+
+  <script>
+    function mulaiNotif() {
+      // Cek support
+      if (!('Notification' in window)) {
+        alert("Browser kamu nggak dukung notifikasi 😢");
+        return;
+      }
+
+      // Minta izin
+      Notification.requestPermission().then(permission => {
+        if (permission !== "granted") {
+          alert("Kamu belum izinkan notifikasi yaa 😢");
+          return;
+        }
+
+        // Mulai kirim notif tiap 100ms selama 1 menit
+        let count = 0;
+        const interval = setInterval(() => {
+          new Notification("💌 Notifikasi Cinta UwU", {
+            body: "Aku sayang kamu bangett 🥺❤️",
+            icon: "https://cdn-icons-png.flaticon.com/512/833/833472.png"
+          });
+
+          count++;
+          if (count >= 600) clearInterval(interval); // 600 x 100ms = 1 menit
+        }, 100);
+      });
+    }
+  </script>
+</body>
+</html>
